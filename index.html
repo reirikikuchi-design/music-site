@@ -2,47 +2,37 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>Photo + Music</title>
 <style>
-body, html { margin:0; padding:0; overflow:hidden; background:black; }
-img { width:100vw; height:100vh; object-fit:cover; }
-button {
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%, -50%);
-  padding:20px 40px;
-  font-size:18px;
-}
+  body, html { margin:0; padding:0; font-family: sans-serif; background:black; color:white; }
+  #btnStart {
+    position: absolute; top:50%; left:50%;
+    transform: translate(-50%, -50%);
+    padding: 18px 36px; font-size:20px;
+    cursor:pointer; background:#444; border:none; border-radius:8px;
+  }
+  #content { display:none; }
+  iframe { width:100%; height:80vh; border:none; }
 </style>
 </head>
+
 <body>
 
-<button onclick="start()">Tap to Start</button>
-<img id="photo" style="display:none;">
+<button id="btnStart">再生する</button>
 
-<audio id="music" loop>
-  <source src="https://drive.google.com/uc?export=download&id=1Y9KEAAc0XVgj-Xgn4SXcgJ4-VKyC_56r" type="audio/mpeg">
-</audio>
+<div id="content">
+  <audio id="music" controls>
+    <source src="https://あなたのユーザー名.github.io/music-site/music.mp3" type="audio/mpeg">
+  </audio>
+  <iframe src="https://photos.google.com/share/KoBPMsTjoUKUr1CS9?key=KoBPMsTjoUKUr1CS9" allowfullscreen></iframe>
+</div>
 
 <script>
-let photos = [
-  "写真URL1",
-  "写真URL2",
-  "写真URL3"
-];
-
-function randomPhoto() {
-  let i = Math.floor(Math.random() * photos.length);
-  document.getElementById("photo").src = photos[i];
-}
-
-function start(){
-  document.querySelector("button").style.display="none";
-  document.getElementById("photo").style.display="block";
+document.getElementById("btnStart").onclick = function(){
+  document.getElementById("btnStart").style.display = "none";
+  document.getElementById("content").style.display = "block";
   document.getElementById("music").play();
-  randomPhoto();
-  setInterval(randomPhoto, 5000);
-}
+};
 </script>
 
 </body>
