@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+body, html { margin:0; padding:0; overflow:hidden; background:black; }
+img { width:100vw; height:100vh; object-fit:cover; }
+button {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  padding:20px 40px;
+  font-size:18px;
+}
+</style>
+</head>
+<body>
+
+<button onclick="start()">Tap to Start</button>
+<img id="photo" style="display:none;">
+
+<audio id="music" loop>
+  <source src="https://drive.google.com/uc?export=download&id=1Y9KEAAc0XVgj-Xgn4SXcgJ4-VKyC_56r" type="audio/mpeg">
+</audio>
+
+<script>
+let photos = [
+  "写真URL1",
+  "写真URL2",
+  "写真URL3"
+];
+
+function randomPhoto() {
+  let i = Math.floor(Math.random() * photos.length);
+  document.getElementById("photo").src = photos[i];
+}
+
+function start(){
+  document.querySelector("button").style.display="none";
+  document.getElementById("photo").style.display="block";
+  document.getElementById("music").play();
+  randomPhoto();
+  setInterval(randomPhoto, 5000);
+}
+</script>
+
+</body>
+</html>
